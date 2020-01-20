@@ -1,4 +1,13 @@
 # Libraries ---------------------------------------------------------------
+if(!require("shiny"))
+  install.packages("shiny")
+if(!require("ggplot2"))
+  install.packages("ggplot2")
+if(!require("dplyr"))
+  install.packages("dplyr")
+if(!require("tidyr"))
+  install.packages("tidyr")
+
 library(shiny, lib.loc="~/R_libs2")
 library(ggplot2, lib.loc="~/R_libs2")
 library(dplyr, lib.loc="~/R_libs2")
