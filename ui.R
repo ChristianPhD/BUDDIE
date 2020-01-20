@@ -1,0 +1,96 @@
+# Libraries  --------------------------------------------------
+library(shiny, lib.loc="~/R_libs2")
+library(ggplot2, lib.loc="~/R_libs2")
+library(dplyr, lib.loc="~/R_libs2")
+library(tidyr, lib.loc="~/R_libs2")
+
+# Global R ----------------------------------------------------------------
+Master <- read.csv("~/cleaned_combined_rcn_data_10_11_19.csv", stringsAsFactors = FALSE)
+
+Master <- Master %>%
+  select(Age = age,
+         Gender = gender,
+         Title = year,
+         Year = year_whole,
+         Ethnicity = ethnicity,
+         Am.Ind.AK.Native = ethnicity_american_indian__alaska_native,
+         Asian.Asian.Ame = ethnicity_asian__asian_american,
+         Black.Afr.Am = ethnicity_black__african_american,
+         Latino.His.His.Am = ethnicity_latino__hispanic__hispanic_american,
+         Native.Haw.Oth.Pac.Isl = ethnicity_native_hawaiian__other_pacific_islander,
+         White.Eur.Am = ethnicity_white__european_american,
+         URM = urm,
+         URM.Ethnic = urm_from_ethnicity,
+         First.Gen = fgen,
+         International = international,
+         Country.State = country_state,
+         Major = current_major,
+         Same.Major.Entering = same_major_entering,
+         Same.Major.Graduating = same_major_graduating,
+         University = university,
+         Subject = subject,
+         Course.Number = course_number,
+         Semester = semester,
+         Section = section,
+         Grade.Percent = final_grade_percent,
+         Grade.Letter = final_grade_letter,
+         Exam1.Percent = exam_1_percent,
+         Exam2.Percent = exam_2_percent,
+         Exam3.Percent = exam_3_percent,
+         Exam4.Percent = exam_4_percent,
+         Final.Exam.Percent = final_exam_percent,
+         Avg.Exams.Percent = avg_exams_percent,
+         Lecture.Percent = total_lecture_percent,
+         c1:st23)
+
+MetaData <- data.frame(Variable = names(Master),
+                       Type = as.vector(unlist(lapply(Master, class))),
+                       stringsAsFactors = FALSE) %>%
+  mutate(Type = ifelse(Type == "integer", "numeric", Type))
+
+Demographics <- Master %>%
+  select(Age:Section)
+
+Variables <- Master %>%
+  select(Grade.Percent:st23)
+
+
+# User Interface ----------------------------------------------------------
+ui <- 
+  # User Interface ----------------------------------------------------------
+navbarPage(id='mainnavbar',"BUDDIE",
+           # Introduction ------------------------------------------------------------
+           tabPanel(value = "introtab", "Introduction",
+                    fluidPage(
+                      title = "BUDDIE",
+                      mainPanel(width=12,
+                                strong("Biology URM Diversity Data Interactive Explorer (BUDDIE)", style = "font-family: Arial; font-size: 30px; color: #055C8B"),
+                                p("This will be some introduction to the BUDDIE site with instructions on how to use it.", style = "font-family: 'Arial'; font-size: 14px; color: #000000;"))
+                      )),
+           # BUDDIE Tool ------------------------------------------------------------------
+           tabPanel(value='BUDDIEtab',"BUDDIE",
+                    fluidPage(
+                      titlePanel("BUDDIE"),
+                      sidebarLayout(
+                        sidebarPanel(
+                          strong("Select the independent variable"),
+                          selectInput("indselect", NULL, choices = c(names(Variables), names(Demographics))),
+                          br(),
+                          strong("Select the dependent variable"),
+                          selectInput("depselect", NULL, choices = c(names(Variables), names(Demographics))),
+                          br(),
+                          strong("Broken down by (first demographic):"),
+                          selectInput("demselect1", NULL, choices = c("None", names(Demographics))),
+                          br(),
+                          strong("Broken down by (second) demographic):"),
+                          selectInput("demselect2", NULL, choices = c("None", names(Demographics))),
+                          br()
+                        ),
+                        mainPanel(
+                          plotOutput('mainplot', height="400px", width="600px")
+                        )
+                      )
+                    )
+           )
+)
+
