@@ -1,11 +1,11 @@
-# Libraries  --------------------------------------------------
+# Libraries ---------------------------------------------------------------
 library(shiny, lib.loc="~/R_libs2")
 library(ggplot2, lib.loc="~/R_libs2")
 library(dplyr, lib.loc="~/R_libs2")
 library(tidyr, lib.loc="~/R_libs2")
 
 # Global R ----------------------------------------------------------------
-Master <- read.csv("~/cleaned_combined_rcn_data_10_11_19.csv", stringsAsFactors = FALSE)
+Master <- read.csv("~/buddie_data.csv", stringsAsFactors = FALSE)
 
 Master <- Master %>%
   select(Age = age,
