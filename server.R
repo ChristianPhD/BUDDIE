@@ -25,6 +25,9 @@ input <- data.frame(
 # Global R ----------------------------------------------------------------
 Master <- read.csv("~/buddie_data.csv", stringsAsFactors = FALSE)
 
+#enables bookmarking functionality
+enableBookmarking(store = "url")
+
 Master <- Master %>%
   select(Age = age,
          Gender = gender,
@@ -79,6 +82,14 @@ Variables <- Master %>%
 server <- function(input, output, session) {
   
   output$mainplot <- renderPlot({
+    
+  #server function for bookmarking
+  output$out <- renderText({
+    if (input$caps)
+      toupper(input$txt)
+    else
+      input$txt
+  })
     
     IndType <- MetaData$Type[MetaData$Variable == input$indselect]
     DepType <- MetaData$Type[MetaData$Variable == input$depselect]

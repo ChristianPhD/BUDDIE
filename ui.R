@@ -93,7 +93,10 @@ navbarPage(id='mainnavbar',"BUDDIE",
                           br(),
                           strong("Broken down by (second) demographic):"),
                           selectInput("demselect2", NULL, choices = c("None", names(Demographics))),
-                          br()
+                          br(),
+                          
+                          #adds bookmark button to ui
+                          bookmarkButton(),
                         ),
                         mainPanel(
                           plotOutput('mainplot', height="400px", width="600px")
