@@ -90,6 +90,33 @@ server <- function(input, output, session) {
     else
       input$txt
   })
+  
+  #Allows for Data Download
+  
+  #TODO: DETERMINE PROPER DOWNLOADING FILE TYPES
+  
+  dataset <- 'mainplot'
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste("BUDDIEData", Sys.Date(), ".", input$selectDownload, sep = "")
+    },
+    content = function(file) {
+      if(selectDownload == 1) {
+        #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
+        #contentType = image/jpeg
+        
+        #TODO: DETERMINE CORRECT WRITE FUNCTION
+        write.table(dataset, file)
+      }
+      if(selectDownload == 2) {
+        #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
+        #contentType = svg
+        
+        #TODO: DETERMINE CORRECT WRITE FUNCTION
+        write.table(dataset, file)
+      }
+    }
+  )
     
     IndType <- MetaData$Type[MetaData$Variable == input$indselect]
     DepType <- MetaData$Type[MetaData$Variable == input$depselect]

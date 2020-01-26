@@ -97,6 +97,19 @@ navbarPage(id='mainnavbar',"BUDDIE",
                           
                           #adds bookmark button to ui
                           bookmarkButton(),
+                          
+                          #adds download button to ui
+                          actionButton("buttonDownload", "Download Dataset"),
+                          conditionalPanel(
+                            condition = "input.buttonDownload == true",
+                            selectInput("selectDownload", label = h3("Select File Type"), 
+                                      choices = list("JPEG" = 1, "SVG" = 2, 
+                                      selected = 1)),
+                            downloadButton("downloadData", "Download")),
+                          
+                          hr(),
+                          fluidRow(column(2, verbatimTextOutput("downloadValue")))
+                          
                         ),
                         mainPanel(
                           plotOutput('mainplot', height="400px", width="600px")
