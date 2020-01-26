@@ -83,6 +83,15 @@ server <- function(input, output, session) {
   
   output$mainplot <- renderPlot({
     
+    #Basic Progress Bar Functionality -- see withProgress API for details on how to further implement
+    withProgress(message = 'Calculation in progress',
+      detail = 'This may take a while...', value = 0, {
+      for (i in 1:5) {
+        incProgress(1/5)
+        Sys.sleep(0.25)
+      }
+    })
+    
   #server function for bookmarking
   output$out <- renderText({
     if (input$caps)
