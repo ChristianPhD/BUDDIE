@@ -7,6 +7,8 @@ if(!require("dplyr"))
   install.packages("dplyr")
 if(!require("tidyr"))
   install.packages("tidyr")
+if(!require("shinythemes"))
+  install.packages("shinythemes")
 
 library(shiny, lib.loc="~/R_libs2")
 library(ggplot2, lib.loc="~/R_libs2")

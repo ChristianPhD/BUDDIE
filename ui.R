@@ -7,11 +7,14 @@ if(!require("dplyr"))
   install.packages("dplyr")
 if(!require("tidyr"))
   install.packages("tidyr")
+if(!require("shinythemes"))
+  install.packages("shinythemes")
 
 library(shiny, lib.loc="~/R_libs2")
 library(ggplot2, lib.loc="~/R_libs2")
 library(dplyr, lib.loc="~/R_libs2")
 library(tidyr, lib.loc="~/R_libs2")
+library(shinythemes)
 
 # Global R ----------------------------------------------------------------
 Master <- read.csv("~/buddie_data.csv", stringsAsFactors = FALSE)
@@ -71,6 +74,9 @@ navbarPage(id='mainnavbar',"BUDDIE",
            # Introduction ------------------------------------------------------------
            tabPanel(value = "introtab", "Introduction",
                     fluidPage(
+                      #select a theme
+                      theme = shinytheme("slate"),
+                      
                       title = "BUDDIE",
                       mainPanel(width=12,
                                 strong("Biology URM Diversity Data Interactive Explorer (BUDDIE)", style = "font-family: Arial; font-size: 30px; color: #055C8B"),
@@ -118,4 +124,5 @@ navbarPage(id='mainnavbar',"BUDDIE",
                     )
            )
 )
+
 
