@@ -8,6 +8,8 @@ if(!require("dplyr"))
   install.packages("dplyr")
 if(!require("tidyr"))
   install.packages("tidyr")
+if(!require("shinythemes"))
+  install.packages("shinythemes")
 
 library(shiny, lib.loc="~/R_libs2")
 library(ggplot2, lib.loc="~/R_libs2")
@@ -30,6 +32,9 @@ input <- data.frame(
 #Global R variables that are declared/or being renamed to be used in both user interface and server files so that there shall be no problem while coding for other functions.
 #Additionally there shall be no confusion of variable names, checkstyle errors if we define them at the start of the coding in each files listed.
 Master <- read.csv("~/buddie_data.csv", stringsAsFactors = FALSE)
+
+#enables bookmarking functionality
+enableBookmarking(store = "url")
 
 Master <- Master %>%
   select(Age = age,
@@ -86,6 +91,50 @@ Variables <- Master %>%
 server <- function(input, output, session) {
   
   output$mainplot <- renderPlot({
+    
+    #Basic Progress Bar Functionality -- see withProgress API for details on how to further implement
+    withProgress(message = 'Calculation in progress',
+      detail = 'This may take a while...', value = 0, {
+      for (i in 1:5) {
+        incProgress(1/5)
+        Sys.sleep(0.25)
+      }
+    })
+    
+  #server function for bookmarking
+  output$out <- renderText({
+    if (input$caps)
+      toupper(input$txt)
+    else
+      input$txt
+  })
+  
+  #Allows for Data Download
+  
+  #TODO: DETERMINE PROPER DOWNLOADING FILE TYPES
+  
+  dataset <- 'mainplot'
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste("BUDDIEData", Sys.Date(), ".", input$selectDownload, sep = "")
+    },
+    content = function(file) {
+      if(selectDownload == 1) {
+        #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
+        #contentType = image/jpeg
+        
+        #TODO: DETERMINE CORRECT WRITE FUNCTION
+        write.table(dataset, file)
+      }
+      if(selectDownload == 2) {
+        #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
+        #contentType = svg
+        
+        #TODO: DETERMINE CORRECT WRITE FUNCTION
+        write.table(dataset, file)
+      }
+    }
+  )
     
     IndType <- MetaData$Type[MetaData$Variable == input$indselect]
     DepType <- MetaData$Type[MetaData$Variable == input$depselect]

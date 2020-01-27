@@ -8,11 +8,14 @@ if(!require("dplyr"))
   install.packages("dplyr")
 if(!require("tidyr"))
   install.packages("tidyr")
+if(!require("shinythemes"))
+  install.packages("shinythemes")
 
 library(shiny, lib.loc="~/R_libs2")
 library(ggplot2, lib.loc="~/R_libs2")
 library(dplyr, lib.loc="~/R_libs2")
 library(tidyr, lib.loc="~/R_libs2")
+library(shinythemes)
 
 # Global R ----------------------------------------------------------------
 
@@ -78,6 +81,9 @@ navbarPage(id='mainnavbar',"BUDDIE",
            # Introduction ------------------------------------------------------------
            tabPanel(value = "introtab", "Introduction",
                     fluidPage(
+                      #select a theme
+                      theme = shinytheme("slate"),
+                      
                       title = "BUDDIE",
                       mainPanel(width=12,
                                 strong("Biology URM Diversity Data Interactive Explorer (BUDDIE)", style = "font-family: Arial; font-size: 30px; color: #055C8B"),
@@ -104,7 +110,23 @@ BUDDIE page has got some textual description in the home page right now but the 
                           br(),
                           strong("Broken down by (second) demographic):"),
                           selectInput("demselect2", NULL, choices = c("None", names(Demographics))),
-                          br()
+                          br(),
+                          
+                          #adds bookmark button to ui
+                          bookmarkButton(),
+                          
+                          #adds download button to ui
+                          actionButton("buttonDownload", "Download Dataset"),
+                          conditionalPanel(
+                            condition = "input.buttonDownload == true",
+                            selectInput("selectDownload", label = h3("Select File Type"), 
+                                      choices = list("JPEG" = 1, "SVG" = 2, 
+                                      selected = 1)),
+                            downloadButton("downloadData", "Download")),
+                          
+                          hr(),
+                          fluidRow(column(2, verbatimTextOutput("downloadValue")))
+                          
                         ),
                         mainPanel(
                           plotOutput('mainplot', height="400px", width="600px")
@@ -113,4 +135,5 @@ BUDDIE page has got some textual description in the home page right now but the 
                     )
            )
 )
+
 
