@@ -1,3 +1,4 @@
+#Libraries were imported to make sure that no problems will be caused while implementing the default functions of Rshiny package.
 # Libraries ---------------------------------------------------------------
 if(!require("shiny"))
   install.packages("shiny")
@@ -14,6 +15,10 @@ library(dplyr, lib.loc="~/R_libs2")
 library(tidyr, lib.loc="~/R_libs2")
 
 # Global R ----------------------------------------------------------------
+
+#Global R variables that are declared/or being renamed to be used in both user interface and server files so that there shall be no problem while coding for other functions.
+#Additionally there shall be no confusion of variable names, checkstyle errors if we define them at the start of the coding in each files listed.
+
 Master <- read.csv("~/buddie_data.csv", stringsAsFactors = FALSE)
 
 Master <- Master %>%
@@ -67,6 +72,8 @@ Variables <- Master %>%
 # User Interface ----------------------------------------------------------
 ui <- 
   # User Interface ----------------------------------------------------------
+# The section of code is used for the introductory page of BUDDIE. When we run the ui.R file we come across the BUDDIE home page where it gives us the breif introduction
+# about the application and shows the abbrevation of BUDDIE.
 navbarPage(id='mainnavbar',"BUDDIE",
            # Introduction ------------------------------------------------------------
            tabPanel(value = "introtab", "Introduction",
@@ -74,9 +81,13 @@ navbarPage(id='mainnavbar',"BUDDIE",
                       title = "BUDDIE",
                       mainPanel(width=12,
                                 strong("Biology URM Diversity Data Interactive Explorer (BUDDIE)", style = "font-family: Arial; font-size: 30px; color: #055C8B"),
-                                p("This will be some introduction to the BUDDIE site with instructions on how to use it.", style = "font-family: 'Arial'; font-size: 14px; color: #000000;"))
+                                p("This will be some introduction to the BUDDIE site with instructions on how to use it. As a user, I want to improve the introduction page of BUDDIE by adding textual description about the application.
+BUDDIE page has got some textual description in the home page right now but the description is not enough to tell what exactly the application is doing. So, I would improve the home page by including more descriptions about the application's working, outputs and expectation of the application.", 
+                                  style = "font-family: 'Arial'; font-size: 14px; color: #000000;"))
                       )),
            # BUDDIE Tool ------------------------------------------------------------------
+           #This section of code is used to list the independent, dependent variables and demographics. This also shows the graph dimeansions, list of variables 
+           # involved in the demographics and label the graph with the variables.
            tabPanel(value='BUDDIEtab',"BUDDIE",
                     fluidPage(
                       titlePanel("BUDDIE"),
