@@ -82,14 +82,14 @@ navbarPage(id='mainnavbar',"BUDDIE",
            tabPanel(value = "introtab", "Introduction",
                     fluidPage(
                       #select a theme
-                      theme = shinytheme("slate"),
+                      theme = shinytheme("superhero"),
                       
                       title = "BUDDIE",
                       mainPanel(width=12,
                                 strong("Biology URM Diversity Data Interactive Explorer (BUDDIE)", style = "font-family: Arial; font-size: 30px; color: #055C8B"),
                                 p("This will be some introduction to the BUDDIE site with instructions on how to use it. As a user, I want to improve the introduction page of BUDDIE by adding textual description about the application.
 BUDDIE page has got some textual description in the home page right now but the description is not enough to tell what exactly the application is doing. So, I would improve the home page by including more descriptions about the application's working, outputs and expectation of the application.", 
-                                  style = "font-family: 'Arial'; font-size: 14px; color: #000000;"))
+                                  style = "font-family: 'Arial'; font-size: 26px; color: white;"))
                       )),
            # BUDDIE Tool ------------------------------------------------------------------
            #This section of code is used to list the independent, dependent variables and demographics. This also shows the graph dimeansions, list of variables 
