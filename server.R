@@ -1,3 +1,4 @@
+#Libraries were imported to make sure that no problems will be caused while implementing the default functions of Rshiny package.
 # Libraries ---------------------------------------------------------------
 if(!require("shiny"))
   install.packages("shiny")
@@ -7,6 +8,8 @@ if(!require("dplyr"))
   install.packages("dplyr")
 if(!require("tidyr"))
   install.packages("tidyr")
+if(!require("shinythemes"))
+  install.packages("shinythemes")
 
 library(shiny, lib.loc="~/R_libs2")
 library(ggplot2, lib.loc="~/R_libs2")
@@ -14,6 +17,9 @@ library(dplyr, lib.loc="~/R_libs2")
 library(tidyr, lib.loc="~/R_libs2")
 
 # Mock Input --------------------------------------------------------------
+
+#Testing Inputs
+
 input <- data.frame(
   indselect = "c6",
   depselect = "Grade.Letter",
@@ -23,7 +29,12 @@ input <- data.frame(
 )
 
 # Global R ----------------------------------------------------------------
+#Global R variables that are declared/or being renamed to be used in both user interface and server files so that there shall be no problem while coding for other functions.
+#Additionally there shall be no confusion of variable names, checkstyle errors if we define them at the start of the coding in each files listed.
 Master <- read.csv("~/buddie_data.csv", stringsAsFactors = FALSE)
+
+#enables bookmarking functionality
+enableBookmarking(store = "url")
 
 Master <- Master %>%
   select(Age = age,
@@ -76,9 +87,54 @@ Variables <- Master %>%
 
 
 # Server ------------------------------------------------------------------
+#This section of code is used to give the rendor plot input, output varibales and restrictions so that we can add varibales, run as many combinations as possible.
 server <- function(input, output, session) {
   
   output$mainplot <- renderPlot({
+    
+    #Basic Progress Bar Functionality -- see withProgress API for details on how to further implement
+    withProgress(message = 'Calculation in progress',
+      detail = 'This may take a while...', value = 0, {
+      for (i in 1:5) {
+        incProgress(1/5)
+        Sys.sleep(0.25)
+      }
+    })
+    
+  #server function for bookmarking
+  output$out <- renderText({
+    if (input$caps)
+      toupper(input$txt)
+    else
+      input$txt
+  })
+  
+  #Allows for Data Download
+  
+  #TODO: DETERMINE PROPER DOWNLOADING FILE TYPES
+  
+  dataset <- 'mainplot'
+  output$downloadData <- downloadHandler(
+    filename = function() {
+      paste("BUDDIEData", Sys.Date(), ".", input$selectDownload, sep = "")
+    },
+    content = function(file) {
+      if(selectDownload == 1) {
+        #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
+        #contentType = image/jpeg
+        
+        #TODO: DETERMINE CORRECT WRITE FUNCTION
+        write.table(dataset, file)
+      }
+      if(selectDownload == 2) {
+        #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
+        #contentType = svg
+        
+        #TODO: DETERMINE CORRECT WRITE FUNCTION
+        write.table(dataset, file)
+      }
+    }
+  )
     
     IndType <- MetaData$Type[MetaData$Variable == input$indselect]
     DepType <- MetaData$Type[MetaData$Variable == input$depselect]
@@ -101,6 +157,8 @@ server <- function(input, output, session) {
         drop_na(!!input$demselect1) %>%
         drop_na(!!input$demselect2)
     }
+    
+    #Making the dependent and independent varibales to be numeric and the lengths of demographics to be 0.
   
     if(DepType == "numeric" & IndType == "numeric" & length(DemType1) == 0 & length(DemType2) == 0){
       
@@ -115,6 +173,7 @@ server <- function(input, output, session) {
       
     }else if(DepType == "numeric" & IndType == "numeric" & length(DemType1) == 1 & length(DemType2) == 0){
       
+#This section is used to add color to the independent and dependent variables in the ggplot and also include the size of the text.      
       if(DemType1 == "character"){
         mainplot <- 
           ggplot(Master.fil, aes_string(x = input$indselect, y = input$depselect, color = input$demselect1)) +
@@ -125,6 +184,8 @@ server <- function(input, output, session) {
           theme(
             axis.text = element_text(size = 14),
             axis.title = element_text(size = 16))
+        
+#This section is again the same but the difference is that demType is changing from character to numeric which make it another variable to analyse.
       }else if(DemType1 == "numeric"){
         mainplot <- 
           ggplot(Master.fil, aes_string(x = input$indselect, y = input$depselect, color = input$demselect1)) +
@@ -136,6 +197,8 @@ server <- function(input, output, session) {
             axis.text = element_text(size = 14),
             axis.title = element_text(size = 16))
       }
+      
+      #Making the dependent and independent varibales to be numeric and the lengths of demographics to be 1.
       
     }else if(DepType == "numeric" & IndType == "numeric" & length(DemType1) == 1 & length(DemType2) == 1){
       
@@ -154,6 +217,7 @@ server <- function(input, output, session) {
           stop("You selected a numeric variable as the second demographic variable; cannot plot a numeric variable as the facetting variable. Try selecting this demographic variable as the independent variable instead.")
       }
       
+      #Making the dependent numeric and independent varibales character by letting lengths of demographics to be 0.
     }else if(DepType == "numeric" & IndType == "character" & length(DemType1) == 0 & length(DemType2) == 0){
       
       mainplot <- 
@@ -163,6 +227,8 @@ server <- function(input, output, session) {
         theme(
           axis.text = element_text(size = 14),
           axis.title = element_text(size = 16))
+      
+      #Making the dependent variable data type numeric and independent varibales to be character and the lengths of demographics to be 1 and 0 respectively.
       
     }else if(DepType == "numeric" & IndType == "character" & length(DemType1) == 1 & length(DemType2) == 0){
       
@@ -178,6 +244,8 @@ server <- function(input, output, session) {
       }else if(DemType1 == "numeric"){
         stop("You selected a numeric variable as the first demographic variable; cannot plot a numeric variable as the grouping variable. Try selecting this demographic variable as the independent variable instead.")
       }
+      
+      #Making the dependent variable data type numeric and independent varibales to be character and the lengths of demographics to be 1 and 1 respectively.
       
     }else if(DepType == "numeric" & IndType == "character" & length(DemType1) == 1 & length(DemType2) == 1){
       
@@ -196,6 +264,8 @@ server <- function(input, output, session) {
         stop("You selected a numeric variable as the second demographic variable; cannot plot a numeric variable as the facetting variable. Try selecting this demographic variable as the independent variable instead.")
       
       }
+      
+      #Making the dependent variable data type character and independent varibales to be numeric and the lengths of demographics to be 0 and 0 respectively.
       
       }else if(DepType == "character" & IndType == "numeric" & length(DemType1) == 0 & length(DemType2) == 0){
       
@@ -221,6 +291,8 @@ server <- function(input, output, session) {
           axis.title = element_text(size = 16),
           panel.grid.major = element_blank())
 
+      #Making the dependent variable data type character and independent varibales to be character and the lengths of demographics to be 1 and 0 respectively.
+      
     }else if(DepType == "character" & IndType == "character" & length(DemType1) == 1 & length(DemType2) == 0){
       
       if(DemType1 == "character"){
@@ -230,7 +302,8 @@ server <- function(input, output, session) {
           ungroup() %>%
           group_by_at(vars(input$demselect1, input$indselect)) %>%
           mutate(Percent = Count / sum(Count) * 100)
-        
+   
+        #GG plot with color combinations, scales and sizes.     
         mainplot <-
           ggplot(Master.filRastor, aes_string(x = input$indselect, y = input$depselect, fill = "Percent")) +
           geom_raster() +
@@ -257,6 +330,8 @@ server <- function(input, output, session) {
           ungroup() %>%
           group_by_at(vars(input$demselect1, input$demselect2, input$indselect)) %>%
           mutate(Percent = Count / sum(Count) * 100)
+      
+          # This ection is used to round the output values shown and to scale the gg plot by sizes and using colors to shows the plot.
         
         mainplot <-
           ggplot(Master.filRastor, aes_string(x = input$indselect, y = input$depselect, fill = "Percent")) +
