@@ -129,9 +129,7 @@ navbarPage(
                  fluidRow(column(2, verbatimTextOutput("downloadValue")))
                  
                ),
-               mainPanel(plotOutput(
-                 'mainplot', height = "600px", width = "900px"
-               ))
+               mainPanel(plotOutput('mainplot', height = "600px", width = "auto"))
              )
            )),
   
