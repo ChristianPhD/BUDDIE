@@ -10,11 +10,17 @@ if (!require("tidyr"))
   install.packages("tidyr")
 if (!require("shinythemes"))
   install.packages("shinythemes")
+if (!require("ggvis"))
+  install.packages("ggvis")
+if (!require("png"))
+  install.packages("png")
 
 library(shiny, lib.loc = "~/R_libs2")
 library(ggplot2, lib.loc = "~/R_libs2")
 library(dplyr, lib.loc = "~/R_libs2")
 library(tidyr, lib.loc = "~/R_libs2")
+library(ggvis)
+library(png)
 
 # Mock Input --------------------------------------------------------------
 
@@ -112,39 +118,25 @@ server <- function(input, output, session) {
     
     #Allows for Data Download
     
-    #TODO: DETERMINE PROPER DOWNLOADING FILE TYPES
-    
-    
-    
-    dataset <- 'mainplot'
-    
-    
     # Increment the progress bar, and update the detail text.
     progress$inc(3/5, detail = "Saving image export state.")
     Sys.sleep(0.1)
     
-    output$downloadData <- downloadHandler(
+  output$downloadData <- downloadHandler(
       filename = function() {
+        #Specify File Name
         paste("BUDDIEData",
-              Sys.Date(),
-              ".",
-              input$selectDownload,
-              sep = "")
+               input$selectDownload,
+               sep = ".")
       },
       content = function(file) {
-        if (selectDownload == 1) {
-          #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
-          #contentType = image/jpeg
-          
-          #TODO: DETERMINE CORRECT WRITE FUNCTION
-          write.table(dataset, file)
+        if (input$selectDownload == "png") {
+          png(file)
         }
-        if (selectDownload == 2) {
-          #TODO: DETERMINE CORRECT CONTENTTYPE VARIABLES
-          #contentType = svg
-          
-          #TODO: DETERMINE CORRECT WRITE FUNCTION
-          write.table(dataset, file)
+        if (input$selectDownload == "pdf") {
+          pdf(file)
+        mainplot(x,y)
+        dev.off()
         }
       }
     )
@@ -178,7 +170,7 @@ server <- function(input, output, session) {
     #Making the dependent and independent varibales to be numeric and the lengths of demographics to be 0.
     
     # Increment the progress bar, and update the detail text.
-    progress$inc(4/5, detail = "Setting dependent and independent varibales to be numeric.")
+    progress$inc(4/5, detail = "Setting dependent and independent variables to be numeric.")
     Sys.sleep(0.1)
     
     if (DepType == "numeric" & IndType == "numeric" & length(DemType1) == 0 & length(DemType2) == 0) {

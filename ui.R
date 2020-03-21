@@ -10,12 +10,18 @@ if (!require("tidyr"))
   install.packages("tidyr")
 if (!require("shinythemes"))
   install.packages("shinythemes")
+if (!require("ggvis"))
+  install.packages("ggvis")
+if (!require("png"))
+  install.packages("png")
 
 library(shiny, lib.loc = "~/R_libs2")
 library(ggplot2, lib.loc = "~/R_libs2")
 library(dplyr, lib.loc = "~/R_libs2")
 library(tidyr, lib.loc = "~/R_libs2")
 library(shinythemes)
+library(ggvis)
+library(png)
 
 # Global R ----------------------------------------------------------------
 
@@ -108,19 +114,15 @@ navbarPage(
                  
                  #adds bookmark button to ui
                  bookmarkButton(),
+                 # downloadButton("downloadData", "Download"),
                  
-                 #adds download button to ui
-                 actionButton("buttonDownload", "Download Dataset"),
+                 
+                 actionButton("buttonDownload", "Download Image"),
                  conditionalPanel(
                    condition = "input.buttonDownload == true",
-                   selectInput(
-                     "selectDownload",
+                   radioButtons(inputId = "selectDownload",
                      label = h3("Select File Type"),
-                     choices = list(
-                       "JPEG" = 1,
-                       "SVG" = 2,
-                       selected = 1
-                     )
+                     choices = list("png","pdf")
                    ),
                    downloadButton("downloadData", "Download")
                  ),
