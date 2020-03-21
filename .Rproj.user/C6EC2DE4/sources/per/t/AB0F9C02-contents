@@ -136,7 +136,136 @@ navbarPage(
   # Introduction ------------------------------------------------------------
   tabPanel(
     value = "introtab",
-    "Info",
+    "About",
+    
+    fluidRow(
+      shiny::HTML("<br><br><center> 
+                                            <h1>About BUDDIE</h1> 
+                                            <h4>Biology URM Diversity Data Interactive Explorer</h4>
+                                            </center>
+                                            <br>
+                                            <br>"),
+      style = "height:250px;"),
+    
+    fluidRow(
+      div(align = "center",
+          tags$span(h4("Frequently Asked Questions (FAQ)"), 
+                    style = "font-weight:bold"
+          ))
+    ),
+    
+    fluidRow(
+      column(3),
+      column(6,
+             tags$ul(
+               tags$li(h5("What is BUDDIE?")),
+                    tags$ul(tags$li(h6("BUDDIE, Biology Undergraduate Diversity Data Interactive Explorer, is a tool created to allow research scientists and data analysts to explore trends and export data related to undergraduates of underrepresented minority (URM) status in biology and STEM classes. The goal of BUDDIE is to create an accessible web page that allows analysts within the research network to explore data trends within a unified tool. Research scientists will be able to export plots in multiple formats, save data configurations through a shareable URL, filter the master data file to accommodate their research and many more quality of life features wrapped in a fresh user interface designed with diversity and accessibility in mind."))),
+               tags$li(h5("What is the goal of BUDDIE?")),
+                    tags$ul(tags$li(h6("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."))),
+               tags$li(h5("Who is BUDDIE for?")),
+                    tags$ul(tags$li(h6("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."))),
+               tags$li(h5("Who funds BUDDIE?")),
+                    tags$ul(tags$li(h6("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."))),
+             )
+      ),
+      column(3)
+    ),
+    
+    fluidRow(
+      div(align = "center",
+          tags$span(h4("_________________________________________"), 
+                    style = "font-weight:bold"
+          ))
+    ),
+
+    fluidRow(
+      div(align = "center",
+          tags$span(h4("Contact Us"), 
+                    style = "font-weight:bold"
+          ))
+    ),
+    # Contact Us
+    fluidRow(
+      column(3),
+      column(6,
+             shiny::HTML("<h6>BUDDIE is sponsored by __________, with financial support from __________. Feel free to reach out if you have any questions, comments, or concerns.</h6>")
+      ),
+      column(3)
+    ),
+    
+    
+    fluidRow(
+      column(3),
+      
+      # Jordan Harshman
+      column(2,
+             div(class="panel panel-default", 
+                 div(class="panel-body",  width = "600px",
+                     align = "center",
+                     div(
+                       tags$img(src = "man_beard_1.svg", 
+                                width = "50px", height = "50px")
+                     ),
+                     div(
+                       tags$h5("Jordan Harshman"),
+                       tags$h6( tags$i("Department of Chemistry and Biochemistry - Auburn University"))
+                     ),
+                     div(
+                       "jth0083@auburn.edu"
+                     ),
+                     div(
+                       "(334) 844-7126"
+                     )
+                 )
+             )
+      ),
+      # Person 2
+      column(2,
+             div(class="panel panel-default",
+                 div(class="panel-body",  width = "600px", 
+                     align = "center",
+                     div(
+                       tags$img(src = "man.svg", 
+                                width = "50px", height = "50px")
+                     ),
+                     div(
+                       tags$h5("Person 2"),
+                       tags$h6( tags$i("Person 2 Role - Institution"))
+                     ),
+                     div(
+                       "Person 2 Contact Email"
+                     ),
+                     div(
+                       "Person 2 Contact Phone"
+                     )
+                 )
+             )
+      ),
+      # Person 3
+      column(2,
+             div(class="panel panel-default",
+                 div(class="panel-body",  width = "600px", 
+                     align = "center",
+                     div(
+                       tags$img(src = "woman.svg", 
+                                width = "50px", height = "50px")),
+                     div(
+                       tags$h5("Person 3"),
+                       tags$h6( tags$i("Person 3 Role - Institution"))
+                     ),
+                     div(
+                       "Person 3 Contact Email"
+                     ),
+                     div(
+                       "Person 3 Contact Phone"
+                     )
+                 )
+             )
+      ),
+      column(3)
+      
+    ),
+    
     fluidPage(
       #select a theme
       theme = shinytheme("flatly"),
@@ -144,16 +273,6 @@ navbarPage(
       title = "BUDDIE",
       mainPanel(
         width = 12,
-        strong(
-          "Biology URM Diversity Data Interactive Explorer (BUDDIE)",
-          style = "font-family: Times New Roman; font-size: 30px; color: #055C8B"
-        ),
-        
-        p(
-          "This will be some introduction to the BUDDIE site with instructions on how to use it. As a user, I want to improve the introduction page of BUDDIE by adding textual description about the application.
-                                  BUDDIE page has got some textual description in the home page right now but the description is not enough to tell what exactly the application is doing. So, I would improve the home page by including more descriptions about the application's working, outputs and expectation of the application.",
-          style = "font-family: 'Times New Roman'; font-size: 26px; color: white;"
-        )
       )
     )
   )
