@@ -77,7 +77,7 @@ Variables <- Master %>%
 
 
 # User Interface ----------------------------------------------------------
-ui <-
+ui <- function(request) {
   # User Interface ----------------------------------------------------------
 # The section of code is used for the introductory page of BUDDIE. When we run the ui.R file we come across the BUDDIE home page where it gives us the breif introduction
 # about the application and shows the abbrevation of BUDDIE.
@@ -277,3 +277,4 @@ navbarPage(
     )
   )
 )
+}
