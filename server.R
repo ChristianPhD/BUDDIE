@@ -110,14 +110,6 @@ server <- function(input, output, session) {
     progress$inc(2/5, detail = "Saving bookmark state")
     Sys.sleep(0.1)
     
-    #server function for bookmarking
-    output$out <- renderText({
-      if (input$caps)
-        toupper(input$txt)
-      else
-        input$txt
-    })
-    
     #Allows for Data Download
     
     #TODO: DETERMINE PROPER DOWNLOADING FILE TYPES
