@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1196323935",
+    "hash" : "1628888776",
     "id" : "AB0F9C02",
-    "lastKnownWriteTime" : 1584822477,
-    "last_content_update" : 1584822477962,
+    "lastKnownWriteTime" : 1585145847,
+    "last_content_update" : 1585145847524,
     "path" : "C:/Users/mrcag/Desktop/shiny_apps/BUDDIE_new/ui.R",
     "project_path" : "ui.R",
     "properties" : {
-        "cursorPosition" : "155,4",
-        "scrollLine" : "141"
+        "cursorPosition" : "719,38",
+        "scrollLine" : "691"
     },
     "read_only" : false,
     "read_only_alternatives" : [
