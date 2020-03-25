@@ -99,6 +99,20 @@ Variables <- Master %>%
 # Server ------------------------------------------------------------------
 #This section of code is used to give the rendor plot input, output varibales and restrictions so that we can add varibales, run as many combinations as possible.
 server <- function(input, output, session) {
+  output$selected_var <- renderText({
+    paste ("x-axis: MSLQ1: This item (I prefer courses that are challenging so I an learn new thing) is a part of the (Intrinsic Value) scale of the MSLQ; please consider looking at the whole scale in addition to the Individual item.
+y-axis: Grade.Percent: The student's grade, expressed as a percent.
+
+Motivational and Self-Regualted Learning Questionnare (MSLQ)- Measures
+
+motivational beliefs (self-efficacy, Intrinsic value, and test anxiety) and self-regulated learning strategies
+
+(cognitive strategies and self-regulation). As administered, only the Intrinsic value and test anxiety (motivational beliefs)
+
+and self-regulation (self-regulated learnig strategies) scales were used. Original authors: Paul Pintrich & Elisabeth V.DeGroot
+
+in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$var)
+  })
   output$mainplot <- renderPlot({
     
     # Create a Progress object
