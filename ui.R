@@ -132,6 +132,8 @@ navbarPage(
                  
                ),
                mainPanel(plotOutput('mainplot', height = "600px", width = "auto"))
+             ),
+                mainPanel(textOutput("selected_var")
              )
            )),
   
