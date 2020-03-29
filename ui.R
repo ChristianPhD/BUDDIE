@@ -285,13 +285,13 @@ navbarPage(
   # This section is used to describe all of the independent, dependent, and demographic variables used in the tool
   tabPanel(
     value = "variabletab",
-    "Variable Descriptions",
+    "Glossary",
     fluidPage(
       theme = shinytheme("flatly"),
-      title = "Variable Descriptions",
+      title = "Glossary",
       mainPanel(
         width = 12,
-        h1("BUDDIE Variable Descriptions",
+        h1("BUDDIE Variable Description Glossary",
            style = "font-family: Helvetica; font-size: 30px; color: #2B3E51"
         ),
         strong("General Information",
