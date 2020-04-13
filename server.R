@@ -139,18 +139,14 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
   output$downloadData <- downloadHandler(
       filename = function() {
         #Specify File Name
-        paste("BUDDIEData",
-               input$selectDownload,
-               sep = ".")
+        paste("BUDDIE", tolower(input$selectDownload), sep = ".")
       },
       content = function(file) {
-        if (input$selectDownload == "png") {
-          png(file)
+        if (input$selectDownload == "PNG") {
+          ggsave(file, plot = mainplot, device = "png")
         }
-        if (input$selectDownload == "pdf") {
-          pdf(file)
-        mainplot(x,y)
-        dev.off()
+        if (input$selectDownload == "PDF") {
+          ggsave(file, plot = mainplot, device = "pdf")
         }
       }
     )

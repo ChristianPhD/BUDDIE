@@ -122,7 +122,7 @@ navbarPage(
                    condition = "input.buttonDownload == true",
                    radioButtons(inputId = "selectDownload",
                      label = h3("Select File Type"),
-                     choices = list("png","pdf")
+                     choices = list("PNG","PDF")
                    ),
                    downloadButton("downloadData", "Download")
                  ),
