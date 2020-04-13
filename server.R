@@ -10,8 +10,6 @@ if (!require("tidyr"))
   install.packages("tidyr")
 if (!require("shinythemes"))
   install.packages("shinythemes")
-if (!require("ggvis"))
-  install.packages("ggvis")
 if (!require("png"))
   install.packages("png")
 
