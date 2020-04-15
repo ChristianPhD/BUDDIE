@@ -286,13 +286,10 @@ navbarPage(
     value = "variabletab",
     "Glossary",
     fluidPage(
+      titlePanel("Variable Glossary"),
       theme = shinytheme("flatly"),
-      title = "Glossary",
       mainPanel(
         width = 12,
-        h1("BUDDIE Variable Description Glossary",
-           style = "font-family: Helvetica; font-size: 30px; color: #2B3E51"
-        ),
         strong("General Information",
                style = "font-family: Helvetica; font-size: 20px; color:  #2B3E51"
         ),

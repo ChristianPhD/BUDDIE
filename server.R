@@ -192,12 +192,11 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
         drop_na(!!input$demselect2)
     }
     
-    #Making the dependent and independent varibales to be numeric and the lengths of demographics to be 0.
-    
-    # Increment the progress bar, and update the detail text.
+    #Increment the progress bar, and update the detail text.
     progress$inc(4/5, detail = "Setting dependent and independent variables to be numeric.")
     Sys.sleep(0.1)
     
+    #Making the dependent and independent variables to be numeric and the lengths of demographics to be 0.
     if (DepType == "numeric" & IndType == "numeric" & length(DemType1) == 0 & length(DemType2) == 0) {
       mainplot <-
         ggplot(Master.fil,aes_string(x = input$indselect, y = input$depselect)) +
@@ -208,6 +207,7 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
       
     } 
     else if (DepType == "numeric" & IndType == "numeric" & length(DemType1) == 1 & length(DemType2) == 0) {
+      
       #This section is used to add color to the independent and dependent variables in the ggplot and also include the size of the text.
       if (DemType1 == "character") {
         mainplot <-
@@ -223,9 +223,9 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
           scale_color_brewer(palette = "Set1") +
           theme(axis.text = element_text(size = 14),
                 axis.title = element_text(size = 16))
-        
-        #This section is again the same but the difference is that demType is changing from character to numeric which make it another variable to analyse.
       } 
+      
+      #This section is again the same but the difference is that demType is changing from character to numeric which make it another variable to analyse.
       else if (DemType1 == "numeric") {
         mainplot <-
           ggplot(
@@ -243,10 +243,9 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
           theme(axis.text = element_text(size = 14),
                 axis.title = element_text(size = 16))
       }
-      
-      #Making the dependent and independent varibales to be numeric and the lengths of demographics to be 1.
-      
     } 
+    
+    #Making the dependent and independent variables to be numeric and the lengths of demographics to be 1.
     else if (DepType == "numeric" &
                IndType == "numeric" &
                length(DemType1) == 1 & length(DemType2) == 1) {
@@ -272,10 +271,10 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
         stop(
           "You selected a numeric variable as the second demographic variable; cannot plot a numeric variable as the facetting variable. Try selecting this demographic variable as the independent variable instead."
         )
-      }
-      
-      #Making the dependent numeric and independent varibales character by letting lengths of demographics to be 0.
+      } 
     } 
+    
+    #Making the dependent numeric and independent variables character by letting lengths of demographics to be 0.
     else if (DepType == "numeric" &
                IndType == "character" &
                length(DemType1) == 0 & length(DemType2) == 0) {
@@ -285,11 +284,10 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
         geom_boxplot(alpha = .3) +
         theme_bw() +
         theme(axis.text = element_text(size = 14),
-              axis.title = element_text(size = 16))
-      
-      #Making the dependent variable data type numeric and independent varibales to be character and the lengths of demographics to be 1 and 0 respectively.
-      
+              axis.title = element_text(size = 16))  
     } 
+    
+    #Making the dependent variable data type numeric and independent variables to be character and the lengths of demographics to be 1 and 0 respectively.
     else if (DepType == "numeric" &
                IndType == "character" &
                length(DemType1) == 1 & length(DemType2) == 0) {
@@ -313,11 +311,10 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
         stop(
           "You selected a numeric variable as the first demographic variable; cannot plot a numeric variable as the grouping variable. Try selecting this demographic variable as the independent variable instead."
         )
-      }
-      
-      #Making the dependent variable data type numeric and independent varibales to be character and the lengths of demographics to be 1 and 1 respectively.
-      
+      }   
     } 
+    
+    #Making the dependent variable data type numeric and independent variables to be character and the lengths of demographics to be 1 and 1 respectively.
     else if (DepType == "numeric" &
                IndType == "character" &
                length(DemType1) == 1 & length(DemType2) == 1) {
@@ -343,11 +340,10 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
           "You selected a numeric variable as the second demographic variable; cannot plot a numeric variable as the facetting variable. Try selecting this demographic variable as the independent variable instead."
         )
         
-      }
-      
-      #Making the dependent variable data type character and independent varibales to be numeric and the lengths of demographics to be 0 and 0 respectively.
-      
+      }    
     } 
+    
+    #Making the dependent variable data type character and independent variables to be numeric and the lengths of demographics to be 0 and 0 respectively.
     else if (DepType == "character" &
                IndType == "numeric" &
                length(DemType1) == 0 & length(DemType2) == 0) {
@@ -383,11 +379,10 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
           axis.text = element_text(size = 14),
           axis.title = element_text(size = 16),
           panel.grid.major = element_blank()
-        )
-      
-      #Making the dependent variable data type character and independent varibales to be character and the lengths of demographics to be 1 and 0 respectively.
-      
+        )   
     } 
+    
+    #Making the dependent variable data type character and independent variables to be character and the lengths of demographics to be 1 and 0 respectively.
     else if (DepType == "character" &
                IndType == "character" &
                length(DemType1) == 1 & length(DemType2) == 0) {
@@ -426,8 +421,6 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
           "You selected a numeric variable as the first demographic variable; cannot plot a numeric variable as the facetting variable. Try selecting this demographic variable as the independent variable instead."
         )
       }
-      
-      
     } 
     else if (DepType == "character" &
                IndType == "character" &
@@ -447,8 +440,7 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
           group_by_at(vars(input$demselect1, input$demselect2, input$indselect)) %>%
           mutate(Percent = Count / sum(Count) * 100)
         
-        # This ection is used to round the output values shown and to scale the gg plot by sizes and using colors to shows the plot.
-        
+        # This section is used to round the output values shown and to scale the gg plot by sizes and using colors to shows the plot.
         mainplot <-
           ggplot(
             Master.filRastor,
@@ -470,7 +462,6 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
             axis.title = element_text(size = 16),
             panel.grid.major = element_blank()
           )
-        
       } 
       else if (DemType2 == "numeric") {
         stop(
@@ -490,14 +481,8 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
     
     #plots the mainplot
     mainplot
-    
-    
   })
 }
-
-
-
-
 
 #
 # MasterRastor <- Master %>%
