@@ -155,6 +155,23 @@ in the Joural of Educational Pscychology, Volume 90, Issue 1, in 1990.", input$v
     DemType1 <- MetaData$Type[MetaData$Variable == input$demselect1]
     DemType2 <- MetaData$Type[MetaData$Variable == input$demselect2]
     
+    #limits dependent list to numeric variables if independent variable is numeric
+    numVariables <- MetaData$Variable[MetaData$Type == "numeric"]
+    observeEvent(
+      input$indselect,
+      if (IndType == "numeric") {
+        if (DepType == "character") { #allows input$depselect to still be a choice so the user can see the option they chose to cause the error
+          updateSelectInput(session, "depselect", NULL, choices = c(input$depselect, numVariables), selected = input$depselect)
+        }
+        else {
+          updateSelectInput(session, "depselect", NULL, choices = numVariables, selected = input$depselect)
+        }
+      }
+      else {
+        updateSelectInput(session, "depselect", NULL, choices = c(names(Variables), names(Demographics)), selected = input$depselect)
+      }
+    )
+    
     
     if (length(DemType1) == 0 & length(DemType2) == 0) {
       Master.fil <- Master %>%

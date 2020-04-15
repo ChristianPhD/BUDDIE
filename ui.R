@@ -114,6 +114,7 @@ navbarPage(
                  bookmarkButton(),
                  # downloadButton("downloadData", "Download"),
                  
+                 div(style="margin: 10px"),
                  
                  actionButton("buttonDownload", "Download Image"),
                  conditionalPanel(
