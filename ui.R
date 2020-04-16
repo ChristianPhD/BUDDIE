@@ -120,7 +120,7 @@ navbarPage(
                  conditionalPanel(
                    condition = "input.buttonDownload == true",
                    radioButtons(inputId = "selectDownload",
-                     label = h3("Select File Type"),
+                     label = h5("Select File Type", style = "font-size: 16px"),
                      choices = list("PNG","PDF")
                    ),
                    downloadButton("downloadData", "Download")
@@ -140,43 +140,30 @@ navbarPage(
   tabPanel(
     value = "introtab",
     "About",
+    titlePanel(h1("About BUDDIE", align = "center")),
+    titlePanel(h4("Biology URM Diversity Data Interactive Explorer", align = "center")),
     
+    titlePanel(h4("Frequently Asked Questions (FAQ)", style = "line-height: 0.1")),
     fluidRow(
-      shiny::HTML("<br><br><center> 
-                                            <h1>About BUDDIE</h1> 
-                                            <h4>Biology URM Diversity Data Interactive Explorer</h4>
-                                            </center>
-                                            <br>
-                                            <br>"),
-      style = "height:250px;"),
-    
-    fluidRow(
-      div(align = "center",
-          tags$span(h4("Frequently Asked Questions (FAQ)"), 
-                    style = "font-weight:bold"
-          ))
-    ),
-    
-    fluidRow(
-      column(3),
-      column(6,
+      column(10,
              tags$ul(
                tags$li(h5("What is BUDDIE?")),
-                    tags$ul(tags$li(h6("BUDDIE, Biology Undergraduate Diversity Data Interactive Explorer, is a tool created to allow research scientists and data analysts to explore trends and export data related to undergraduates of underrepresented minority (URM) status in biology and STEM classes. The goal of BUDDIE is to create an accessible web page that allows analysts within the research network to explore data trends within a unified tool. Research scientists will be able to export plots in multiple formats, save data configurations through a shareable URL, filter the master data file to accommodate their research and many more quality of life features wrapped in a fresh user interface designed with diversity and accessibility in mind."))),
+                    tags$ul(tags$li("BUDDIE, Biology Undergraduate Diversity Data Interactive Explorer, is a tool created to allow 
+                                    research scientists and data analysts to explore trends and export data related to undergraduates of underrepresented minority (URM) status in biology and STEM classes. The goal of BUDDIE is to create an accessible web page that allows analysts within the research network to explore data trends within a unified tool. Research scientists will be able to export plots in multiple formats, save data configurations through a shareable URL, filter the master data file to accommodate their research and many more quality of life features wrapped in a fresh user interface designed with diversity and accessibility in mind."), style = "font-family: Helvetica; font-size: 14px"),
                tags$li(h5("What is the goal of BUDDIE?")),
-                    tags$ul(tags$li(h6("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."))),
+                    tags$ul(tags$li("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."), style = "font-family: Helvetica; font-size: 14px"),
                tags$li(h5("Who is BUDDIE for?")),
-                    tags$ul(tags$li(h6("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."))),
+                    tags$ul(tags$li("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."), style = "font-family: Helvetica; font-size: 14px"),
                tags$li(h5("Who funds BUDDIE?")),
-                    tags$ul(tags$li(h6("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."))),
+                    tags$ul(tags$li("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec ultrices tincidunt arcu non sodales neque sodales ut. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Et tortor consequat id porta nibh venenatis cras. Elementum nibh tellus molestie nunc non blandit. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Luctus venenatis lectus magna fringilla urna. Pellentesque habitant morbi tristique senectus et netus et. Egestas diam in arcu cursus euismod. Nulla facilisi morbi tempus iaculis urna id volutpat. Lacus suspendisse faucibus interdum posuere. Diam maecenas sed enim ut. Amet dictum sit amet justo donec enim diam vulputate ut. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Morbi tristique senectus et netus et malesuada fames ac. Eget nulla facilisi etiam dignissim diam quis. Sit amet justo donec enim diam vulputate ut pharetra. Sit amet aliquam id diam maecenas ultricies mi eget mauris. Gravida in fermentum et sollicitudin ac. Purus semper eget duis at."), style = "font-family: Helvetica; font-size: 14px"),
              )
       ),
-      column(3)
+      column(2)
     ),
     
     fluidRow(
       div(align = "center",
-          tags$span(h4("_________________________________________"), 
+          tags$span(h4("__________________________________________________________________________"), 
                     style = "font-weight:bold"
           ))
     ),
@@ -189,8 +176,8 @@ navbarPage(
     ),
     # Contact Us
     fluidRow(
-      column(3),
-      column(6,
+      column(2),
+      column(9, align = "center",
              shiny::HTML("<h6>BUDDIE is sponsored by __________, with financial support from __________. Feel free to reach out if you have any questions, comments, or concerns.</h6>")
       ),
       column(3)
@@ -286,12 +273,12 @@ navbarPage(
     value = "variabletab",
     "Glossary",
     fluidPage(
-      titlePanel("Variable Glossary"),
+      titlePanel(h1("Variable Glossary", align = "center")),
       theme = shinytheme("flatly"),
       mainPanel(
         width = 12,
-        strong("General Information",
-               style = "font-family: Helvetica; font-size: 20px; color:  #2B3E51"
+        titlePanel(h4("General Information", 
+                      style = "font-size: 20px; font-weight: 600; line-height: 0.1")
         ),
         p("This is the general information that each student is asked when filling out surveys.",
           style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
@@ -327,8 +314,8 @@ navbarPage(
           style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
         ),
         p(" ", br(), style = "line-height: .25"),
-        strong("Student Assessment of Learning Gains",
-               style = "font-family: Helvetica; font-size: 20px; color:  #2B3E51"
+        titlePanel(h4("Student Assessment of Learning Gains", 
+                      style = "font-size: 20px; font-weight: 600; line-height: 0.1")
         ),
         p("This modified assessment measures the students' confidence in performing a variety of tasks commonly associated with learning goals of science courses.",
           br(),
@@ -362,8 +349,8 @@ navbarPage(
           style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
         ),
         p(" ", br(), style = "line-height: .25"),
-        strong("Motivational and Self-Regulated Learning Questionnaire",
-               style = "font-family: Helvetica; font-size: 20px; color:  #2B3E51"
+        titlePanel(h4("Motivational and Self-Regulated Learning Questionnaire", 
+                      style = "font-size: 20px; font-weight: 600; line-height: 0.1")
         ),
         p("This scale measures motivational beliefs (self-efficacy, intrinsic value, and test anxiety) and self-regulated learning strategies (cogntitive strategies and self-regulation). As administered, only the intrinsic value and test anxiety (motivational beliefs) and self-regulation (self-regulated learning strategies) scales were used.",
           br(),
@@ -409,8 +396,8 @@ navbarPage(
           style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
         ),
         p(" ", br(), style = "line-height: .25"),
-        strong("Social Context Assessment of Learning Environment",
-               style = "font-family: Helvetica; font-size: 20px; color:  #2B3E51"
+        titlePanel(h4("Social Context Assessment of Learning Environment", 
+                      style = "font-size: 20px; font-weight: 600; line-height: 0.1")
         ),
         p("This modified version of the SCALE measures general relations between students and instructors where students take on roles as learners or instructors.",
           br(),
@@ -448,8 +435,8 @@ navbarPage(
           style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
         ),
         p(" ", br(), style = "line-height: .25"),
-        strong("Social Identities and Attitude Scale",
-               style = "font-family: Helvetica; font-size: 20px; color:  #2B3E51"
+        titlePanel(h4("Social Identities and Attitude Scale", 
+                      style = "font-size: 20px; font-weight: 600; line-height: 0.1")
         ),
         p("This scale measures stereotype threat and identity aspects as they relate to the classroom from the perspective of individual students.",
           br(),
