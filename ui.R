@@ -317,6 +317,43 @@ ui <- function(request) {
             tags$li("Same.Major.Graduating: Do you intend to graduate with the same major(s)/minor(s)?"),
             style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
           ),
+          titlePanel(h4("Numeric Information", 
+                        style = "font-size: 20px; font-weight: 600; line-height: 0.1")
+          ),
+          p("This is the numeric information regarding the grades of those taking the survey.",
+            br(),
+            "*Note: Numeric independent variables can only be graphed with numeric dependent variables.",
+            style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
+          ),
+          p(" ", br(), style = "line-height: .25"),
+          p("Scale Key",
+            style = "font-family: Helvetica; font-size: 15px; color:  #2B3E51; line-height: 0.1"
+          ),
+          tags$ul(
+            tags$li("90% - 100% = A"),
+            tags$li("80% - 89% = B"),
+            tags$li("70% - 79% = C"),
+            tags$li("60% - 69% = D"),
+            tags$li("0% - 59% = F"),
+            style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
+          ),
+          p(" ", br(), style = "line-height: .25"),
+          p("Variable Key",
+            style = "font-family: Helvetica; font-size: 15px; color:  #2B3E51; line-height: 0.1"
+          ),
+          tags$ul(
+            tags$li("Age: what is your age?"),
+            tags$li("Grade.Percent: Final grade percent"),
+            tags$li("Grade.Letter: Final grade letter"),
+            tags$li("Exam1.Percent: Exam 1 percent"),
+            tags$li("Exam2.Percent: Exam 2 percent"),
+            tags$li("Exam3.Percent: Exam 3 percent"),
+            tags$li("Exam4.Percent: Exam 4 percent"),
+            tags$li("Final.Exam.Percent: Final exam percent"),
+            tags$li("Avg.Exam.Percent: Average exams percent"),
+            tags$li("Lecture.Percent: Total lecture percent"),
+            style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
+          ),
           p(" ", br(), style = "line-height: .25"),
           titlePanel(h4("Student Assessment of Learning Gains", 
                         style = "font-size: 20px; font-weight: 600; line-height: 0.1")
