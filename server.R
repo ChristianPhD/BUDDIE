@@ -97,9 +97,6 @@ Variables <- Master %>%
 # Server ------------------------------------------------------------------
 #This section of code is used to give the rendor plot input, output varibales and restrictions so that we can add varibales, run as many combinations as possible.
 server <- function(input, output, session) {
-  output$selected_var <- renderText({
-    paste ("Please visit the Glossary page for greater understanding of variables (independent and dependent).", input$var)
-  })
   output$mainplot <- renderPlot({
     
     # Create a Progress object
