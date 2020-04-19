@@ -317,6 +317,7 @@ ui <- function(request) {
             tags$li("Same.Major.Graduating: Do you intend to graduate with the same major(s)/minor(s)?"),
             style = "font-family: Helvetica; font-size: 14px; color:  #2B3E51"
           ),
+          p(" ", br(), style = "line-height: .25"),
           titlePanel(h4("Numeric Information", 
                         style = "font-size: 20px; font-weight: 600; line-height: 0.1")
           ),
